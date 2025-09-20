@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSK Fan Hub | IPL</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: #f9f9fb;
+      color: #222;
+      line-height: 1.6;
+    }
+
+    /* Navbar */
+    header {
+      background: #f9d423;
+      color: #222;
+      padding: 18px 50px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    header h1 {
+      font-size: 26px;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+    nav a {
+      margin-left: 25px;
+      text-decoration: none;
+      color: #222;
+      font-weight: 600;
+      transition: 0.3s;
+      font-size: 15px;
+    }
+    nav a:hover {
+      color: #0057e7;
+    }
+
+    /* Hero */
+    .hero {
+      background: url("https://wallpaperaccess.com/full/2089455.jpg") center/cover no-repeat;
+      height: 75vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      color: #fff;
+      text-align: center;
+      position: relative;
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.55);
+    }
+    .hero h2, .hero p {
+      position: relative;
+      z-index: 1;
+    }
+    .hero h2 {
+      font-size: 52px;
+      font-weight: 800;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+    }
+    .hero p {
+      font-size: 20px;
+      max-width: 650px;
+      margin: auto;
+    }
+
+    /* Sections */
+    section {
+      padding: 70px 50px;
+      max-width: 1200px;
+      margin: auto;
+    }
+    h2.section-title {
+      font-size: 32px;
+      margin-bottom: 35px;
+      text-align: center;
+      text-transform: uppercase;
+      color: #222;
+      font-weight: 700;
+      position: relative;
+    }
+    h2.section-title::after {
+      content: "";
+      width: 80px;
+      height: 4px;
+      background: #f9d423;
+      display: block;
+      margin: 10px auto 0;
+      border-radius: 3px;
+    }
+
+    /* Schedule */
+    .schedule table {
+      width: 100%;
+      border-collapse: collapse;
+      border-radius: 12px;
+      overflow: hidden;
+      background: #fff;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+    .schedule th, .schedule td {
+      padding: 16px;
+      text-align: center;
+    }
+    .schedule th {
+      background: #f9d423;
+      color: #222;
+      font-size: 16px;
+    }
+    .schedule tr:nth-child(even) {
+      background: #fafafa;
+    }
+
+    /* Player Profiles */
+    .players {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 25px;
+    }
+    .player-card {
+      background: #fff;
+      border-radius: 14px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      overflow: hidden;
+      text-align: center;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .player-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+    }
+    .player-card img {
+      width: 100%;
+      height: 260px;
+      object-fit: cover;
+    }
+    .player-card h3 {
+      margin: 15px 0 5px;
+      font-size: 20px;
+    }
+    .player-card p {
+      color: #666;
+      font-size: 15px;
+      margin-bottom: 18px;
+    }
+
+    /* Stats */
+    .stats {
+      display: flex;
+      justify-content: space-evenly;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .stat-box {
+      background: #fff;
+      border-radius: 14px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      padding: 35px 25px;
+      text-align: center;
+      flex: 1;
+      min-width: 220px;
+      transition: transform 0.3s;
+    }
+    .stat-box:hover {
+      transform: scale(1.05);
+    }
+    .stat-box h3 {
+      font-size: 34px;
+      color: #0057e7;
+      font-weight: 700;
+    }
+    .stat-box p {
+      font-size: 16px;
+      margin-top: 10px;
+      color: #444;
+    }
+
+    /* News */
+    .news {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+    }
+    .news-card {
+      background: #fff;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      transition: transform 0.3s;
+    }
+    .news-card:hover {
+      transform: translateY(-6px);
+    }
+    .news-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+    .news-card h4 {
+      padding: 15px;
+      font-size: 19px;
+      font-weight: 600;
+    }
+    .news-card p {
+      padding: 0 15px 20px;
+      font-size: 15px;
+      color: #555;
+    }
+
+    /* Fan Zone */
+    .fan-zone {
+      background: #f9d423;
+      text-align: center;
+      padding: 50px;
+      border-radius: 14px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    .fan-zone h2 {
+      margin-bottom: 20px;
+    }
+    .fan-zone input, .fan-zone textarea {
+      width: 80%;
+      max-width: 500px;
+      padding: 12px;
+      margin: 12px 0;
+      border: none;
+      border-radius: 8px;
+      font-size: 15px;
+      outline: none;
+    }
+    .fan-zone textarea {
+      resize: none;
+    }
+    .fan-zone button {
+      padding: 12px 30px;
+      border: none;
+      border-radius: 8px;
+      background: #0057e7;
+      color: #fff;
+      cursor: pointer;
+      font-size: 16px;
+      transition: 0.3s;
+    }
+    .fan-zone button:hover {
+      background: #003f9e;
+    }
+
+    /* Footer */
+    /* footer {
+      background: #222;
+      color: #fff;
+      text-align: center;
+      padding: 20px;
+      margin-top: 60px;
+      font-size: 14px;
+    } */
+     
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <header>
+    <h1>Chennai Super Kings</h1>
+    <nav>
+      <a href="#schedule">Schedule</a>
+      <a href="#players">Players</a>
+      <a href="#stats">Stats</a>
+      <a href="#news">News</a>
+      <a href="#fan">Fan Zone</a>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <h2>Whistle Podu! 🦁</h2>
+    <p>The official fan hub of Chennai Super Kings — stay updated with schedules, players, stats, news & more!</p>
+  </section>
+
+  <!-- Schedule -->
+  <section id="schedule" class="schedule">
+    <h2 class="section-title">Upcoming Matches</h2>
+    <table>
+      <tr>
+        <th>Date</th>
+        <th>Opponent</th>
+        <th>Venue</th>
+        <th>Time</th>
+      </tr>
+      <tr>
+        <td>10 November 2025</td>
+        <td>MI</td>
+        <td>Wankhede Stadium</td>
+        <td>7:30 PM</td>
+      </tr>
+      <tr>
+        <td>14 November 2025</td>
+        <td>RCB</td>
+        <td>M. Chinnaswamy Stadium</td>
+        <td>7:30 PM</td>
+      </tr>
+    </table>
+  </section>
+
+  <!-- Players -->
+  <section id="players">
+    <h2 class="section-title">Player Profiles</h2>
+    <div class="players">
+      <div class="player-card">
+        <img src="pics/Screenshot 2025-09-02 224059.png" alt="MS Dhoni">
+        <h3>MS Dhoni (C)</h3>
+        <p>Wicketkeeper Batsman</p>
+      </div>
+      <div class="player-card">
+        <img src="pics/Screenshot 2025-09-02 224308.png" alt="Ruturaj Gaikwad">
+        <h3>Ruturaj Gaikwad</h3>
+        <p>Opening Batsman</p>
+      </div>
+      <div class="player-card">
+        <img src="pics/Screenshot 2025-09-02 224426.png" alt="Ravindra Jadeja">
+        <h3>Ravindra Jadeja</h3>
+        <p>All Rounder</p>
+      </div>
+      </div>
+      </section>
+
+<footer style="background:#f9d423; color:#222; text-align:center; padding:25px; margin-top:60px;">
+    <h2 style="margin:5px 0;">💛 CSK Fanclub 💛</h2>
+    <p style="margin:5px 0;">Whistle Podu Army - The Official Chennai Super Kings Fan Community</p>
+    <p style="margin:5px 0;">
+      Follow us on 
+      <a href="https://www.instagram.com/chennaiipl" target="_blank" style="color:#222; font-weight:bold; text-decoration:none;">Instagram</a> | 
+      <a href="https://twitter.com/ChennaiIPL" target="_blank" style="color:#222; font-weight:bold; text-decoration:none;">Twitter</a> | 
+      <a href="https://www.chennaisuperkings.com/" target="_blank" style="color:#222; font-weight:bold; text-decoration:none;">Official Website</a>
+    </p>
+    <p style="margin:5px 0; font-size:14px;">© 2025 CSK Fanclub. All Rights Reserved.</p>
+  </footer>
